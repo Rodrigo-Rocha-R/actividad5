@@ -65,15 +65,15 @@ def draw():
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
-        goto(x + 2, y)
+        goto(x + 26, y - 1)
         color('black')
-        write(tiles[mark], font=('Arial', 30, 'normal'))
+        write(tiles[mark], align= "center", font=('Arial', 30, 'normal'))
 
     if won == True:
         up()
         goto(0, 100)
         color('green')
-        write("You Won!!", font=('Arial', 30, 'normal'))
+        write("You Won!!", align= "center", font=('Arial', 40, 'normal'))
 
     up()
     goto(-180, 180)
