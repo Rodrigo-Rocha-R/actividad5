@@ -18,7 +18,7 @@ car = path('car.gif')
 tiles = list(range(32)) * 2
 state = {'mark': None}
 hide = [True] * 64
-
+won = False
 
 def square(x, y):
     """Draw white square with black outline at (x, y)."""
@@ -54,6 +54,9 @@ def tap(x, y):
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
+    global won
+    if all(not hidden for hidden in hide):
+        won = True
 
 
 def draw():
@@ -76,6 +79,12 @@ def draw():
         goto(x + 2, y)
         color('black')
         write(tiles[mark], font=('Arial', 30, 'normal'))
+
+    if won == True:
+        up()
+        goto(0,100)
+        color('green')
+        write("You Won!!", font = ('Arial', 30, 'normal'))
 
     update()
     ontimer(draw, 100)
