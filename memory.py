@@ -69,16 +69,10 @@ def draw():
         up()
         goto(x + 26, y - 1) ##Modificar coordenadas para que el center funcione
         color('black')
-<<<<<<< HEAD
-        write(tiles[mark], align= "center", font=('Arial', 30, 'normal')) ##Agregar center
+        write(letters[mark], align= "center", font=('Arial', 30, 'normal')) ##Agregar center
 
-    ##Verifica que todas las tiles se hayan tapeado, así aparece un mensaje de ganar
+    ##Verifica que todas las tiles se hayan tapeado, asi aparece un mensaje de ganar
     if won == True:
-=======
-        write(letters[mark], align="center", font=('Arial', 30, 'normal'))
-
-    if won:
->>>>>>> 29cf8620967b1912ac9e9e3ff3b1848ba279329d
         up()
         goto(0, 100)
         color('green')
@@ -93,7 +87,7 @@ def draw():
     ontimer(draw, 100)
 
 shuffle(letters)
-setup(420, 420, 370, 0)
+setup(550, 550, 450, 0)
 addshape(car)
 hideturtle()
 tracer(False)
