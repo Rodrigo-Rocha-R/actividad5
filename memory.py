@@ -80,10 +80,6 @@ def draw():
     color('black')
     write(f"Taps: {tap_count}", font=('Arial', 16, 'normal'))
 
-
-
-
-
     update()
     ontimer(draw, 100)
 
