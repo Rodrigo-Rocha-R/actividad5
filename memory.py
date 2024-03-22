@@ -44,6 +44,8 @@ def tap(x, y):
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
+    
+    ##Identifica que hayan tapeado todas las tiles
     global won
     if all(not hidden for hidden in hide):
         won = True
@@ -65,10 +67,11 @@ def draw():
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
-        goto(x + 26, y - 1)
+        goto(x + 26, y - 1) ##Modificar coordenadas para que el center funcione
         color('black')
-        write(tiles[mark], align= "center", font=('Arial', 30, 'normal'))
+        write(tiles[mark], align= "center", font=('Arial', 30, 'normal')) ##Agregar center
 
+    ##Verifica que todas las tiles se hayan tapeado, así aparece un mensaje de ganar
     if won == True:
         up()
         goto(0, 100)
