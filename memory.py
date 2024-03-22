@@ -8,7 +8,7 @@ tiles = list(range(32)) * 2
 state = {'mark': None}
 hide = [True] * 64
 won = False
-tap_count = 0 
+tap_count = 0  
 
 def square(x, y):
     """Draw white square with black outline at (x, y)."""
@@ -76,9 +76,13 @@ def draw():
         write("You Won!!", font=('Arial', 30, 'normal'))
 
     up()
-    goto(-180, 180)
+    goto(-170, 220)
     color('black')
     write(f"Taps: {tap_count}", font=('Arial', 16, 'normal'))
+
+
+
+
 
     update()
     ontimer(draw, 100)
