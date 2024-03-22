@@ -1,10 +1,10 @@
-from random import *
+from random import shuffle
 from turtle import *
-
 from freegames import path
 
 car = path('car.gif')
-tiles = list(range(32)) * 2
+letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H','I','J','K','L','M','N','O','P','Q','R','S','T','W','X','Y','Z'] * 2
+letters += [letter.lower() for letter in letters]  
 state = {'mark': None}
 hide = [True] * 64
 won = False
@@ -17,7 +17,7 @@ def square(x, y):
     down()
     color('black', 'white')
     begin_fill()
-    for count in range(4):
+    for _ in range(4):
         forward(50)
         left(90)
     end_fill()
@@ -38,7 +38,7 @@ def tap(x, y):
     spot = index(x, y)
     mark = state['mark']
 
-    if mark is None or mark == spot or tiles[mark] != tiles[spot]:
+    if mark is None or mark == spot or letters[mark] != letters[spot]:
         state['mark'] = spot
     else:
         hide[spot] = False
@@ -69,14 +69,20 @@ def draw():
         up()
         goto(x + 26, y - 1) ##Modificar coordenadas para que el center funcione
         color('black')
+<<<<<<< HEAD
         write(tiles[mark], align= "center", font=('Arial', 30, 'normal')) ##Agregar center
 
     ##Verifica que todas las tiles se hayan tapeado, así aparece un mensaje de ganar
     if won == True:
+=======
+        write(letters[mark], align="center", font=('Arial', 30, 'normal'))
+
+    if won:
+>>>>>>> 29cf8620967b1912ac9e9e3ff3b1848ba279329d
         up()
         goto(0, 100)
         color('green')
-        write("You Won!!", align= "center", font=('Arial', 40, 'normal'))
+        write("You Won!!", align="center", font=('Arial', 40, 'normal'))
 
     up()
     goto(-170, 220)
@@ -86,7 +92,7 @@ def draw():
     update()
     ontimer(draw, 100)
 
-shuffle(tiles)
+shuffle(letters)
 setup(420, 420, 370, 0)
 addshape(car)
 hideturtle()
