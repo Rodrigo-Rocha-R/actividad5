@@ -1,14 +1,3 @@
-"""Memory, puzzle game of number pairs.
-
-Exercises:
-
-1. Count and print how many taps occur.
-2. Decrease the number of tiles to a 4x4 grid.
-3. Detect when all tiles are revealed.
-4. Center single-digit tile.
-5. Use letters instead of tiles.
-"""
-
 from random import *
 from turtle import *
 
@@ -19,6 +8,7 @@ tiles = list(range(32)) * 2
 state = {'mark': None}
 hide = [True] * 64
 won = False
+tap_count = 0 
 
 def square(x, y):
     """Draw white square with black outline at (x, y)."""
@@ -32,19 +22,19 @@ def square(x, y):
         left(90)
     end_fill()
 
-
 def index(x, y):
     """Convert (x, y) coordinates to tiles index."""
     return int((x + 200) // 50 + ((y + 200) // 50) * 8)
-
 
 def xy(count):
     """Convert tiles count to (x, y) coordinates."""
     return (count % 8) * 50 - 200, (count // 8) * 50 - 200
 
-
 def tap(x, y):
     """Update mark and hidden tiles based on tap."""
+    global tap_count  
+    tap_count += 1  # Incrementa el contador de taps
+
     spot = index(x, y)
     mark = state['mark']
 
@@ -57,7 +47,6 @@ def tap(x, y):
     global won
     if all(not hidden for hidden in hide):
         won = True
-
 
 def draw():
     """Draw image and tiles."""
@@ -82,13 +71,17 @@ def draw():
 
     if won == True:
         up()
-        goto(0,100)
+        goto(0, 100)
         color('green')
-        write("You Won!!", font = ('Arial', 30, 'normal'))
+        write("You Won!!", font=('Arial', 30, 'normal'))
+
+    up()
+    goto(-180, 180)
+    color('black')
+    write(f"Taps: {tap_count}", font=('Arial', 16, 'normal'))
 
     update()
     ontimer(draw, 100)
-
 
 shuffle(tiles)
 setup(420, 420, 370, 0)
